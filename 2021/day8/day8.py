@@ -11,10 +11,10 @@ def part1(lines):
 def unique_count_replacement(lines):
 
     mapping = {
-        2:1,
-        3:7,
-        4:4,
-        7:8,
+        2: 1,
+        3: 7,
+        4: 4,
+        7: 8,
     }
 
     for sides in lines:
@@ -84,10 +84,8 @@ def part2(lines):
 
 
 def tests():
-    lines = parse_input('sample.txt')
-    assert part1(lines) == 26
-    lines = parse_input('sample.txt')
-    assert part2(lines) == 61229
+    assert part1(parse_input('sample.txt')) == 26
+    assert part2(parse_input('sample.txt')) == 61229
 
 
 def parse_input(name):
@@ -105,10 +103,8 @@ def parse_input(name):
 
 
 if __name__ == '__main__':
-    i = parse_input('input.txt')
     tests()
-    print(part1(i))
-    i2 = parse_input('input.txt')
-    print(part2(i2))
+    print(part1(parse_input('input.txt')))
+    print(part2(parse_input('input.txt')))
 
     # print(part2())
