@@ -4,21 +4,26 @@ def part1(lines):
     result = 0
     for sides in lines:
         rhs = sides[1]
-        rhs = map(lambda x: 1,
-                  filter(lambda x: type(x) == int, rhs)
-                  )
-        result += sum(rhs)
+        result += len(list(filter(lambda x: type(x) == int, rhs)))
     return result
 
 
 def unique_count_replacement(lines):
+
+    mapping = {
+        2:1,
+        3:7,
+        4:4,
+        7:8,
+    }
+
     for sides in lines:
         for s in sides:
             for i in range(len(s)):
-                if   len(s[i]) == 2 and type(s[i]) == str: s[i] = 1
-                elif len(s[i]) == 3:                       s[i] = 7
-                elif len(s[i]) == 4:                       s[i] = 4
-                elif len(s[i]) == 7:                       s[i] = 8
+                sigsize = len(s[i])
+                if sigsize in mapping:
+                    s[i] = mapping[sigsize]
+
     return lines
 
 
