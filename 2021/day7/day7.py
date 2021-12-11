@@ -102,7 +102,6 @@ def count(f, n=10000):
 
 
 if __name__ == '__main__':
-    from ryans import ryan_part_2
 
     f = open("input.txt", "r")
 
@@ -110,10 +109,8 @@ if __name__ == '__main__':
     f.close()
     print(part2(initial))
     print(part2_arr(initial))
-    print(ryan_part_2(initial))
 
     rerun = 10000
     count(lambda: part2(initial))
     count(lambda: part2_arr(initial), rerun)
-    count(lambda: ryan_part_2(initial), rerun)
 
