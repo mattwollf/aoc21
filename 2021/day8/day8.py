@@ -45,21 +45,21 @@ def part2(lines):
 
         lhs, rhs = line
 
-        sig1 = find_sig(lhs, 1)
-        sig4 = find_sig(lhs, 4)
-        sig7 = find_sig(lhs, 7)
-        sig8 = find_sig(lhs, 8)
+        sig1 = next(iter(get_size_n_numbers(lhs, 2)))
+        sig4 = next(iter(get_size_n_numbers(lhs, 4)))
+        sig7 = next(iter(get_size_n_numbers(lhs, 3)))
+        sig8 = next(iter(get_size_n_numbers(lhs, 7)))
 
-        zero_six_nine = set([e for e in lhs if len(e) == 6])
+        zero_six_nine = get_size_n_numbers(lhs, 6)
+        two_three_five = get_size_n_numbers(lhs, 5)
         sig6 = next(x for x in zero_six_nine if len(set(sig1).difference(set(x))) == 1)
         zero_nine = zero_six_nine.difference({''.join(sorted(sig6))})
         letter_top_right = next(iter(set(sig1).difference(set(sig6))))
-        two_three_five = set([e for e in lhs if len(e) == 5])
+        letter_bottom_right = next(iter(set(sig1).difference(set(letter_top_right))))
         four_without_top_right = set(sig4).difference(set(letter_top_right))
         sig5 = next(
             x for x in two_three_five if set(x).intersection(four_without_top_right) == four_without_top_right
         )
-        letter_bottom_right = next(iter(set(sig1).difference(set(letter_top_right))))
         sig2 = next(x for x in two_three_five if letter_bottom_right not in x)
         sig3 = next(iter(two_three_five.difference({''.join(sorted(sig5)), ''.join(sorted(sig2))})))
         sig9 = next(x for x in zero_nine if set(x).intersection(four_without_top_right) == four_without_top_right)
@@ -81,6 +81,11 @@ def part2(lines):
         digits = [str(mapping[x]) for x in rhs]
         result += int(''.join(digits))
     return result
+
+
+def get_size_n_numbers(lhs, n):
+    zero_six_nine = set([e for e in lhs if len(e) == n])
+    return zero_six_nine
 
 
 def tests():
